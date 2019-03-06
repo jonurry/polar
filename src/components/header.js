@@ -1,11 +1,12 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import logo from "../images/polar-2.png"
 
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `rebeccapurple`,
+      background: `white`,
       marginBottom: `1.45rem`,
     }}
   >
@@ -20,11 +21,16 @@ const Header = ({ siteTitle }) => (
         <Link
           to="/"
           style={{
-            color: `white`,
+            color: `#FC4C02`,
             textDecoration: `none`,
           }}
         >
-          {siteTitle}
+          <img
+            src={logo}
+            alt="Polar Logo"
+            style={{ height: "2.25rem", float: `left` }}
+          />
+          {siteTitle.slice(1)}
         </Link>
       </h1>
     </div>

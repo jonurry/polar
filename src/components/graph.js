@@ -47,71 +47,26 @@ export default ({ children }) => (
         // `}
       >
         <ResponsiveStream
-          data={[
-            {
-              "Zone 1": 23,
-              "Zone 2": 99,
-              "Zone 3": 177,
-              "Zone 4": 93,
-              "Zone 5": 106,
-            },
-            {
-              "Zone 1": 116,
-              "Zone 2": 179,
-              "Zone 3": 179,
-              "Zone 4": 166,
-              "Zone 5": 200,
-            },
-            {
-              "Zone 1": 162,
-              "Zone 2": 37,
-              "Zone 3": 123,
-              "Zone 4": 188,
-              "Zone 5": 30,
-            },
-            {
-              "Zone 1": 33,
-              "Zone 2": 81,
-              "Zone 3": 98,
-              "Zone 4": 158,
-              "Zone 5": 39,
-            },
-            {
-              "Zone 1": 56,
-              "Zone 2": 150,
-              "Zone 3": 161,
-              "Zone 4": 49,
-              "Zone 5": 46,
-            },
-            {
-              "Zone 1": 87,
-              "Zone 2": 52,
-              "Zone 3": 16,
-              "Zone 4": 105,
-              "Zone 5": 154,
-            },
-            {
-              "Zone 1": 163,
-              "Zone 2": 139,
-              "Zone 3": 139,
-              "Zone 4": 106,
-              "Zone 5": 195,
-            },
-            {
-              "Zone 1": 198,
-              "Zone 2": 131,
-              "Zone 3": 40,
-              "Zone 4": 87,
-              "Zone 5": 131,
-            },
-            {
-              "Zone 1": 87,
-              "Zone 2": 181,
-              "Zone 3": 59,
-              "Zone 4": 57,
-              "Zone 5": 81,
-            },
-          ]}
+          data={data.allStravaActivity.edges.map(edge => {
+            let hrZones = edge.node.activity.zones[0]
+            if (hrZones === undefined)
+              return {
+                "Zone 1": 0,
+                "Zone 2": 0,
+                "Zone 3": 0,
+                "Zone 4": 0,
+                "Zone 5": 0,
+              }
+            return hrZones.distribution_buckets
+              .map((zone, index) => {
+                let o = {}
+                o[`Zone ${index + 1}`] = zone.time
+                return o
+              })
+              .reduce((acc, cur) => {
+                return Object.assign(acc, cur)
+              }, {})
+          })}
           keys={["Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5"]}
           margin={{
             top: 50,

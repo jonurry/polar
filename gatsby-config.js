@@ -57,7 +57,7 @@ module.exports = {
           // Timestamp for filtering activities that have taken place BEFORE a certain time
           //before: "1539500400",
           // Timestamp for filtering activities that have taken place AFTER a certain time
-          after: "1551398400",
+          after: "1546300800",
           //
           // Options for enhance activities
           // --------------------------------
@@ -73,7 +73,7 @@ module.exports = {
           // Add related activities to every activity
           // withRelated: true,
           // Add streams to every activity (see streamTypes)
-          withStreams: true,
+          // withStreams: true,
           // Add zones to every activity (need Strava Summit Analysis Pack)
           withZones: true,
           //
@@ -81,13 +81,13 @@ module.exports = {
           // withStreams option must be true
           // See https://developers.strava.com/docs/reference/#api-models-StreamSet
           streamsTypes: [
-            "time",
+            // "time",
             // "cadence",
             // "distance",
             // "latlng",
-            "heartrate",
+            // "heartrate",
             // "temp",
-            "moving",
+            // "moving",
             // "grade_smooth",
             // "watts",
             // "velocity_smooth",

@@ -6,7 +6,7 @@ import logo from "../images/polar-2.png"
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `white`,
+      background: `#FC4C02`,
       marginBottom: `1.45rem`,
     }}
   >
@@ -21,7 +21,7 @@ const Header = ({ siteTitle }) => (
         <Link
           to="/"
           style={{
-            color: `#FC4C02`,
+            color: `white`,
             textDecoration: `none`,
           }}
         >

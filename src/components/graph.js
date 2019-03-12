@@ -5,7 +5,7 @@ import { StaticQuery, Link, graphql } from "gatsby"
 import { ResponsiveStream } from "@nivo/stream"
 import { linearGradientDef } from "@nivo/core"
 
-export default ({ children }) => (
+export default ({ dateFrom, dateTo, children }) => (
   <StaticQuery
     query={graphql`
       query {
@@ -48,43 +48,53 @@ export default ({ children }) => (
         // `}
       >
         <ResponsiveStream
-          data={data.allStravaActivity.edges.map(edge => {
-            // filter activity for heartrate zone bucket only
-            let hrZones = edge.node.activity.zones.filter(zone => {
-              return zone.type === "heartrate"
-            })
-            // return default zones if not defined
-            if (hrZones.length === 0)
-              return {
-                "Zone 1": 0,
-                "Zone 2": 0,
-                "Zone 3": 0,
-                "Zone 4": 0,
-                "Zone 5": 0,
-              }
-            // return time spent in each zone
-            return hrZones[0].distribution_buckets
-              .sort((a, b) => {
-                // Order the zones in the bucket
-                if (a.min < b.min) {
-                  return -1
-                }
-                if (a.min > b.min) {
-                  return 1
-                }
-                return 0
+          data={
+            // filter between specified dates
+            data.allStravaActivity.edges
+              .filter(edge => {
+                return (
+                  edge.node.activity.start_date > dateFrom &&
+                  edge.node.activity.start_date < dateTo
+                )
               })
-              .map((zone, index) => {
-                // extract time in each zone
-                let o = {}
-                o[`Zone ${index + 1}`] = zone.time
-                return o
+              .map(edge => {
+                // filter activity for heartrate zone bucket only
+                let hrZones = edge.node.activity.zones.filter(zone => {
+                  return zone.type === "heartrate"
+                })
+                // return default zones if not defined
+                if (hrZones.length === 0)
+                  return {
+                    "Zone 1": 0,
+                    "Zone 2": 0,
+                    "Zone 3": 0,
+                    "Zone 4": 0,
+                    "Zone 5": 0,
+                  }
+                // return time spent in each zone
+                return hrZones[0].distribution_buckets
+                  .sort((a, b) => {
+                    // Order the zones in the bucket
+                    if (a.min < b.min) {
+                      return -1
+                    }
+                    if (a.min > b.min) {
+                      return 1
+                    }
+                    return 0
+                  })
+                  .map((zone, index) => {
+                    // extract time in each zone
+                    let o = {}
+                    o[`Zone ${index + 1}`] = zone.time
+                    return o
+                  })
+                  .reduce((acc, cur) => {
+                    // merge zone objects into one
+                    return Object.assign(acc, cur)
+                  }, {})
               })
-              .reduce((acc, cur) => {
-                // merge zone objects into one
-                return Object.assign(acc, cur)
-              }, {})
-          })}
+          }
           keys={["Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5"]}
           margin={{
             top: 50,
@@ -115,6 +125,7 @@ export default ({ children }) => (
           offsetType="silhouette"
           fillOpacity={0.85}
           borderColor="#000"
+          // color={["#000", "#444", "#888", "#bbb", "#eee"]}
           defs={[
             {
               id: "dots",

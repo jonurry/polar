@@ -12,7 +12,7 @@ const IndexPage = () => (
     <h1>Polar</h1>
     <p>Welcome to Polar.</p>
     <p>Analyse your strava activities against a polar training plan.</p>
-    <Graph />
+    <Graph dateFrom={"2019-01-15"} dateTo={"2019-03-12"} />
     {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Image />
     </div> */}

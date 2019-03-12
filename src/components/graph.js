@@ -3,6 +3,7 @@ import React from "react"
 import { StaticQuery, Link, graphql } from "gatsby"
 // import { rhythm } from '../utils/typography';
 import { ResponsiveStream } from "@nivo/stream"
+import { linearGradientDef } from "@nivo/core"
 
 export default ({ children }) => (
   <StaticQuery
@@ -38,7 +39,7 @@ export default ({ children }) => (
     `}
     render={data => (
       <div
-        style={{ height: `500px` }}
+        style={{ height: `1000px` }}
         // css={css`
         //   margin: 0 auto;
         //   max-width: 700px;
@@ -118,35 +119,42 @@ export default ({ children }) => (
             {
               id: "dots",
               type: "patternDots",
-              background: "inherit",
-              color: "#2c998f",
-              size: 4,
-              padding: 2,
+              background: "#7BB0A8",
+              color: "#A7DBAB",
+              size: 3,
+              padding: 3,
               stagger: true,
             },
             {
-              id: "squares",
-              type: "patternSquares",
-              background: "inherit",
-              color: "#e4c912",
-              size: 6,
-              padding: 2,
-              stagger: true,
+              id: "lines2",
+              type: "patternLines",
+              background: "#A7DBAB",
+              color: "#7BB0A8",
+              rotation: -45,
+              lineWidth: 1,
+              spacing: 12,
             },
+            {
+              id: "lines4",
+              type: "patternLines",
+              background: "#A7DBAB",
+              color: "#7BB0A8",
+              rotation: 45,
+              lineWidth: 1,
+              spacing: 12,
+            },
+            linearGradientDef("gradientZone3", [
+              { offset: 0, color: "#fff" },
+              { offset: 50, color: "#f00" },
+              { offset: 100, color: "#fff" },
+            ]),
           ]}
           fill={[
-            {
-              match: {
-                id: "Zone 4",
-              },
-              id: "dots",
-            },
-            {
-              match: {
-                id: "Zone 2",
-              },
-              id: "squares",
-            },
+            { match: { id: "Zone 1" }, id: "dots" },
+            { match: { id: "Zone 2" }, id: "lines2" },
+            { match: { id: "Zone 3" }, id: "gradientZone3" },
+            { match: { id: "Zone 4" }, id: "lines4" },
+            { match: { id: "Zone 5" }, id: "dots" },
           ]}
           dotSize={8}
           dotBorderWidth={2}

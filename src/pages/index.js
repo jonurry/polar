@@ -13,9 +13,9 @@ const IndexPage = () => (
     <p>Welcome to Polar.</p>
     <p>Analyse your strava activities against a polar training plan.</p>
     <Graph />
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      {/* <Image /> */}
-    </div>
+    {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+      <Image />
+    </div> */}
     <Link to="/page-2/">Go to page 2</Link>
   </Layout>
 )

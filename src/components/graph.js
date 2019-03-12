@@ -63,6 +63,16 @@ export default ({ children }) => (
               }
             // return time spent in each zone
             return hrZones[0].distribution_buckets
+              .sort((a, b) => {
+                // Order the zones in the bucket
+                if (a.min < b.min) {
+                  return -1
+                }
+                if (a.min > b.min) {
+                  return 1
+                }
+                return 0
+              })
               .map((zone, index) => {
                 // extract time in each zone
                 let o = {}

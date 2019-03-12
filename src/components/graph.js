@@ -39,7 +39,7 @@ export default ({ dateFrom, dateTo, children }) => (
     `}
     render={data => (
       <div
-        style={{ height: `1000px` }}
+        style={{ height: `70vh`, minHeight: `500px` }}
         // css={css`
         //   margin: 0 auto;
         //   max-width: 700px;
@@ -194,9 +194,6 @@ export default ({ dateFrom, dateTo, children }) => (
             },
           ]}
         />
-        {data.allStravaActivity.edges.map(({ node }, index) => (
-          <p>{node.activity.name}</p>
-        ))}
         {children}
       </div>
     )}

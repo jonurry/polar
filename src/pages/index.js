@@ -9,7 +9,6 @@ import Graph from "../components/graph"
 const IndexPage = () => (
   <Layout>
     <SEO title="Polar" keywords={[`strava`, `polar`, `analysis`]} />
-    <h1>Polar</h1>
     <p>Welcome to Polar.</p>
     <p>Analyse your strava activities against a polar training plan.</p>
     <Graph dateFrom={"2019-01-15"} dateTo={"2019-03-12"} />

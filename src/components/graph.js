@@ -48,8 +48,12 @@ export default ({ children }) => (
       >
         <ResponsiveStream
           data={data.allStravaActivity.edges.map(edge => {
-            let hrZones = edge.node.activity.zones[0]
-            if (hrZones === undefined)
+            // filter activity for heartrate zone bucket only
+            let hrZones = edge.node.activity.zones.filter(zone => {
+              return zone.type === "heartrate"
+            })
+            // return default zones if not defined
+            if (hrZones.length === 0)
               return {
                 "Zone 1": 0,
                 "Zone 2": 0,
@@ -57,13 +61,16 @@ export default ({ children }) => (
                 "Zone 4": 0,
                 "Zone 5": 0,
               }
-            return hrZones.distribution_buckets
+            // return time spent in each zone
+            return hrZones[0].distribution_buckets
               .map((zone, index) => {
+                // extract time in each zone
                 let o = {}
                 o[`Zone ${index + 1}`] = zone.time
                 return o
               })
               .reduce((acc, cur) => {
+                // merge zone objects into one
                 return Object.assign(acc, cur)
               }, {})
           })}
@@ -92,7 +99,9 @@ export default ({ children }) => (
             legend: "",
             legendOffset: -40,
           }}
-          offsetType="none"
+          enableGridX={false}
+          curve="natural"
+          offsetType="silhouette"
           fillOpacity={0.85}
           borderColor="#000"
           defs={[

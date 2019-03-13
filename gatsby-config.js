@@ -57,7 +57,7 @@ module.exports = {
           // Timestamp for filtering activities that have taken place BEFORE a certain time
           //before: "1539500400",
           // Timestamp for filtering activities that have taken place AFTER a certain time
-          after: "1546300800",
+          after: "1541030400",
           //
           // Options for enhance activities
           // --------------------------------

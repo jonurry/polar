@@ -11,7 +11,7 @@ const IndexPage = () => (
     <SEO title="Polar" keywords={[`strava`, `polar`, `analysis`]} />
     <p>Welcome to Polar.</p>
     <p>Analyse your strava activities against a polar training plan.</p>
-    <Graph dateFrom={"2019-01-15"} dateTo={"2019-03-12"} />
+    <Graph dateFrom={"2018-01-15"} dateTo={"2019-03-12"} />
     {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Image />
     </div> */}

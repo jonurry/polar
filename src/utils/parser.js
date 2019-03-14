@@ -23,6 +23,22 @@
 //   }
 // }
 
+const calculatePolarityScores = zones => {
+  return zones.map(zone => {
+    let totalTime = Object.values(zone).reduce((a, c) => {
+      return a + c
+    }, 0)
+    let lower = (zone["Zone 1"] + zone["Zone 2"]) / totalTime
+    let upper = (zone["Zone 4"] + zone["Zone 5"]) / totalTime
+    lower = lower < 0.8 ? lower : 0.8
+    upper = upper < 0.2 ? upper : 0.2
+    let polarityScore = (lower + upper) * 100
+    zone["polarity"] = polarityScore
+    console.log(lower, upper, totalTime, polarityScore, zone)
+    return zone
+  })
+}
+
 const extractTimeInEachZone = zones => {
   return zones.map((zone, index) => {
     // extract time in each zone
@@ -89,9 +105,11 @@ const sortZonesInBucket = bucket => {
 }
 
 export const getActivityStreamData = (data, dateFrom, dateTo) => {
-  return getTimeSpentInEachZone(
-    getActivitiesWithHeartrateData(
-      filterActivitiesByDates(data, dateFrom, dateTo)
+  return calculatePolarityScores(
+    getTimeSpentInEachZone(
+      getActivitiesWithHeartrateData(
+        filterActivitiesByDates(data, dateFrom, dateTo)
+      )
     )
   )
 }

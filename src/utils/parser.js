@@ -23,20 +23,49 @@
 //   }
 // }
 
+const calculatePolarityScore = (z1, z2, z3, z4, z5) => {
+  let totalTime = z1 + z2 + z3 + z4 + z5
+  let lower = (z1 + z2) / totalTime
+  let upper = (z4 + z5) / totalTime
+  lower = lower < 0.8 ? lower : 0.8
+  upper = upper < 0.2 ? upper : 0.2
+  return (lower + upper) * 100
+}
+
 const calculatePolarityScores = zones => {
   return zones.map(zone => {
-    let totalTime = Object.values(zone).reduce((a, c) => {
-      return a + c
-    }, 0)
-    let lower = (zone["Zone 1"] + zone["Zone 2"]) / totalTime
-    let upper = (zone["Zone 4"] + zone["Zone 5"]) / totalTime
-    lower = lower < 0.8 ? lower : 0.8
-    upper = upper < 0.2 ? upper : 0.2
-    let polarityScore = (lower + upper) * 100
-    zone["polarity"] = polarityScore
-    console.log(lower, upper, totalTime, polarityScore, zone)
+    zone["polarity"] = calculatePolarityScore(
+      zone["Zone 1"],
+      zone["Zone 2"],
+      zone["Zone 3"],
+      zone["Zone 4"],
+      zone["Zone 5"]
+    )
     return zone
   })
+}
+
+const calculateOverallPolarityScore = zones => {
+  let totalZone1 = getTotalTimeInZone(1, zones)
+  let totalZone2 = getTotalTimeInZone(2, zones)
+  let totalZone3 = getTotalTimeInZone(3, zones)
+  let totalZone4 = getTotalTimeInZone(4, zones)
+  let totalZone5 = getTotalTimeInZone(5, zones)
+  return calculatePolarityScore(
+    totalZone1,
+    totalZone2,
+    totalZone3,
+    totalZone4,
+    totalZone5
+  )
+}
+
+const getTotalTimeInZone = (zone, zones) => {
+  let total = zones.reduce((a, c) => {
+    return a + c[`Zone ${zone}`]
+  }, 0)
+  console.log(`Z${zone} total: `, total)
+  return total
 }
 
 const extractTimeInEachZone = zones => {
@@ -105,11 +134,13 @@ const sortZonesInBucket = bucket => {
 }
 
 export const getActivityStreamData = (data, dateFrom, dateTo) => {
-  return calculatePolarityScores(
+  let stream = calculatePolarityScores(
     getTimeSpentInEachZone(
       getActivitiesWithHeartrateData(
         filterActivitiesByDates(data, dateFrom, dateTo)
       )
     )
   )
+  stream["polarity"] = calculateOverallPolarityScore(stream)
+  return stream
 }

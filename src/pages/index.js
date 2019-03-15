@@ -20,6 +20,7 @@ const IndexPage = ({ data }) => {
       <SEO title="Polar" keywords={[`strava`, `polar`, `analysis`]} />
       <p>Welcome to Polar.</p>
       <p>Analyse your strava activities against a polar training plan.</p>
+      <h1>Overall Polarity Score: {Math.round(stream["polarity"])}</h1>
       <Graph stream={stream} dateFrom={dateFrom} dateTo={dateTo} />
       {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Image />

@@ -9,7 +9,7 @@ import { getActivityStreamData } from "../utils/parser"
 
 const IndexPage = ({ data }) => {
   let dateFrom = "2019-02-01"
-  let dateTo = "2020-01-01"
+  let dateTo = "2019-03-15"
   let stream = getActivityStreamData(
     data.allStravaActivity.edges,
     dateFrom,

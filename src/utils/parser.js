@@ -81,8 +81,8 @@ const filterActivitiesByDates = (data, dateFrom, dateTo) => {
   return data.filter(edge => {
     // filter between specified dates
     return (
-      edge.node.activity.start_date > dateFrom &&
-      edge.node.activity.start_date < dateTo
+      edge.node.activity.start_date.substring(0, 10) >= dateFrom &&
+      edge.node.activity.start_date.substring(0, 10) <= dateTo
     )
   })
 }

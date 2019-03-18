@@ -1,11 +1,10 @@
 import React from "react"
 // import { css } from '@emotion/core';
-import { StaticQuery, Link, graphql } from "gatsby"
 // import { rhythm } from '../utils/typography';
 import { ResponsiveStream } from "@nivo/stream"
 import { linearGradientDef } from "@nivo/core"
 
-export default ({ stream, dateFrom, dateTo, children }) => (
+export default ({ stream, children }) => (
   <div
     style={{ height: `70vh`, minHeight: `500px` }}
     // css={css`

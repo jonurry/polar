@@ -18,10 +18,12 @@ class DateRange extends React.Component {
   }
 
   handleDateRange(startDate, endDate) {
-    this.props.setDateRange(
-      startDate.format("YYYY-MM-DD"),
-      endDate.format("YYYY-MM-DD")
-    )
+    if (startDate && endDate) {
+      this.props.setDateRange(
+        startDate.format("YYYY-MM-DD"),
+        endDate.format("YYYY-MM-DD")
+      )
+    }
   }
 
   render() {

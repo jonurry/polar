@@ -31,7 +31,6 @@ class DateRange extends React.Component {
     return (
       <div style={{ marginBottom: "1.45rem" }}>
         <DateRangePicker
-          style={{ boxSizing: "border-box", padding: "0" }}
           startDate={this.state.startDate} // momentPropTypes.momentObj or null,
           startDateId={dateFrom} // PropTypes.string.isRequired,
           endDate={this.state.endDate} // momentPropTypes.momentObj or null,

@@ -43,44 +43,53 @@ export default ({ stream, dateFrom, dateTo, children }) => (
       // color={["#000", "#444", "#888", "#bbb", "#eee"]}
       defs={[
         {
-          id: "dots",
+          id: "zone1",
           type: "patternDots",
-          background: "#7BB0A8",
-          color: "#A7DBAB",
+          background: "#57C6B2",
+          color: "#0294A5",
           size: 3,
-          padding: 3,
+          padding: 10,
           stagger: true,
         },
         {
-          id: "lines2",
+          id: "zone2",
           type: "patternLines",
-          background: "#A7DBAB",
-          color: "#7BB0A8",
+          background: "#EFDC51",
+          color: "#8CDFCF",
           rotation: -45,
           lineWidth: 1,
-          spacing: 12,
+          spacing: 16,
         },
-        {
-          id: "lines4",
-          type: "patternLines",
-          background: "#A7DBAB",
-          color: "#7BB0A8",
-          rotation: 45,
-          lineWidth: 1,
-          spacing: 12,
-        },
-        linearGradientDef("gradientZone3", [
+        linearGradientDef("zone3", [
           { offset: 0, color: "#fff" },
-          { offset: 50, color: "#f00" },
+          { offset: 50, color: "#D1302D" },
           { offset: 100, color: "#fff" },
         ]),
+        {
+          id: "zone4",
+          type: "patternLines",
+          background: "#8CDFCF",
+          color: "#57C6B2",
+          rotation: 45,
+          lineWidth: 1,
+          spacing: 16,
+        },
+        {
+          id: "zone5",
+          type: "patternDots",
+          background: "#E59E31",
+          color: "#0294A5",
+          size: 2,
+          padding: 6,
+          stagger: true,
+        },
       ]}
       fill={[
-        { match: { id: "Zone 1" }, id: "dots" },
-        { match: { id: "Zone 2" }, id: "lines2" },
-        { match: { id: "Zone 3" }, id: "gradientZone3" },
-        { match: { id: "Zone 4" }, id: "lines4" },
-        { match: { id: "Zone 5" }, id: "dots" },
+        { match: { id: "Zone 1" }, id: "zone1" },
+        { match: { id: "Zone 2" }, id: "zone2" },
+        { match: { id: "Zone 3" }, id: "zone3" },
+        { match: { id: "Zone 4" }, id: "zone4" },
+        { match: { id: "Zone 5" }, id: "zone5" },
       ]}
       dotSize={8}
       dotBorderWidth={2}

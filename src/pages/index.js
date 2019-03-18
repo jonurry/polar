@@ -7,10 +7,13 @@ import SEO from "../components/seo"
 import Graph from "../components/graph"
 import DateRange from "../components/date-range"
 import { getActivityStreamData } from "../utils/parser"
+import moment from "moment"
 
 const IndexPage = ({ data }) => {
-  let dateFrom = "2019-02-01"
-  let dateTo = "2019-03-15"
+  let dateFrom = moment()
+    .subtract(28, "days")
+    .format("YYYY-MM-DD")
+  let dateTo = moment().format("YYYY-MM-DD")
   let stream = getActivityStreamData(
     data.allStravaActivity.edges,
     dateFrom,

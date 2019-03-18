@@ -2,6 +2,7 @@ import React from "react"
 import "react-dates/initialize"
 import { DateRangePicker } from "react-dates"
 import "react-dates/lib/css/_datepicker.css"
+import "./date-range.css"
 import moment from "moment"
 
 moment.locale("en") // English
@@ -26,16 +27,9 @@ class DateRange extends React.Component {
   render() {
     const { dateFrom, dateTo, children } = this.props
     return (
-      <div
-        style={{ boxSizing: "border-box" }}
-        // css={css`
-        //   margin: 0 auto;
-        //   max-width: 700px;
-        //   padding: ${rhythm(2)};
-        //   padding-top: ${rhythm(1.5)};
-        // `}
-      >
+      <div style={{ marginBottom: "1.45rem" }}>
         <DateRangePicker
+          style={{ boxSizing: "border-box", padding: "0" }}
           startDate={this.state.startDate} // momentPropTypes.momentObj or null,
           startDateId={dateFrom} // PropTypes.string.isRequired,
           endDate={this.state.endDate} // momentPropTypes.momentObj or null,

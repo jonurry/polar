@@ -44,16 +44,20 @@ class IndexPage extends React.Component {
     return (
       <Layout>
         <SEO title="Polar" keywords={[`strava`, `polar`, `analysis`]} />
-        <p>Welcome to Polar.</p>
+        <h2>Welcome to Polar.</h2>
         <p>Analyse your strava activities against a polar training plan.</p>
+        <div>
+          <b>Choose activity date range:</b>
+        </div>
         <DateRange
           dateFrom={this.state.dateFrom}
           dateTo={this.state.dateTo}
           setDateRange={this.setDateRange}
         />
-        <h1>
-          Overall Polarity Score: {Math.round(this.state.stream["polarity"])}
-        </h1>
+        <div>
+          <b>Overall polarity score:</b>
+          <div>{Math.round(this.state.stream["polarity"])}</div>
+        </div>
         <Graph stream={this.state.stream} />
         {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
         <Image />

@@ -35,6 +35,7 @@ export default ({ stream, children }) => (
         legendOffset: -40,
       }}
       enableGridX={false}
+      enableStackTooltip={false}
       curve="catmullRom"
       offsetType="silhouette"
       fillOpacity={0.85}
@@ -60,9 +61,9 @@ export default ({ stream, children }) => (
           spacing: 16,
         },
         linearGradientDef("zone3", [
-          { offset: 0, color: "#fff" },
+          { offset: 0, color: "#FF706D" },
           { offset: 50, color: "#D1302D" },
-          { offset: 100, color: "#fff" },
+          { offset: 100, color: "#FF706D" },
         ]),
         {
           id: "zone4",

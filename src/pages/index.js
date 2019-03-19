@@ -7,6 +7,7 @@ import Graph from "../components/graph"
 import DateRange from "../components/date-range"
 import { getActivityStreamData } from "../utils/parser"
 import moment from "moment"
+import { makeColour } from "../utils/colour.js"
 
 class IndexPage extends React.Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class IndexPage extends React.Component {
   }
 
   render() {
+    let polarity = Math.round(this.state.stream["polarity"])
     return (
       <Layout>
         <SEO title="Polar" keywords={[`strava`, `polar`, `analysis`]} />
@@ -56,7 +58,25 @@ class IndexPage extends React.Component {
         />
         <div>
           <b>Overall polarity score:</b>
-          <div>{Math.round(this.state.stream["polarity"])}</div>
+          <div
+            style={{
+              backgroundColor: makeColour(polarity / 100),
+              borderColor: makeColour(
+                polarity + 15 > 100 ? 100 : (polarity + 15) / 100
+              ),
+              borderRadius: "1.5em",
+              borderStyle: "dashed",
+              borderWidth: ".1em",
+              color: "#333",
+              fontSize: "1.5em",
+              height: "3em",
+              lineHeight: "2.8em",
+              textAlign: "center",
+              width: "3em",
+            }}
+          >
+            <b>{polarity}</b>
+          </div>
         </div>
         <Graph stream={this.state.stream} />
         {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>

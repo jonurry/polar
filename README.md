@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/74817e88-6ca4-4148-969b-2944b01a94de/deploy-status)](https://app.netlify.com/sites/confident-mayer-25b601/deploys)
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">

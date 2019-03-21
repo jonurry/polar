@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Jon Urry <jon@urry.me>",
   "dependencies": {
+    "@nivo/calendar": "^0.53.0",
     "@nivo/stream": "^0.52.1",
     "dotenv": "^6.2.0",
     "gatsby": "^2.1.37",

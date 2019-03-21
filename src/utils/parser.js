@@ -64,7 +64,6 @@ const getTotalTimeInZone = (zone, zones) => {
   let total = zones.reduce((a, c) => {
     return a + c[`Zone ${zone}`]
   }, 0)
-  console.log(`Z${zone} total: `, total)
   return total
 }
 
@@ -101,16 +100,20 @@ const getHeartrateZones = zones => {
 }
 
 const getTimeSpentInEachZone = data => {
-  return data.map(edge => {
-    // return time spent in each zone
-    return mergeZones(
+  let timeInZones = data.map(edge => {
+    // get time spent in each zone
+    let timeInZone = mergeZones(
       extractTimeInEachZone(
         sortZonesInBucket(
           getHeartrateZones(edge.node.activity.zones)[0].distribution_buckets
         )
       )
     )
+    // add activity data for calendar component
+    timeInZone["activity_date"] = edge.node.activity.start_date
+    return timeInZone
   })
+  return timeInZones
 }
 
 const mergeZones = zones => {
@@ -143,4 +146,13 @@ export const getActivityStreamData = (data, dateFrom, dateTo) => {
   )
   stream["polarity"] = calculateOverallPolarityScore(stream)
   return stream
+}
+
+export const getCalendarData = data => {
+  return data.map(zones => {
+    return {
+      day: zones.activity_date.substring(0, 10),
+      value: Math.round(zones.polarity),
+    }
+  })
 }

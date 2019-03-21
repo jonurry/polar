@@ -5,7 +5,8 @@ import SEO from "../components/seo"
 import Graph from "../components/graph"
 import DateRange from "../components/date-range"
 import Polarity from "../components/polarity-score"
-import { getActivityStreamData } from "../utils/parser"
+import Calendar from "../components/calendar"
+import { getActivityStreamData, getCalendarData } from "../utils/parser"
 import moment from "moment"
 
 class IndexPage extends React.Component {
@@ -20,23 +21,28 @@ class IndexPage extends React.Component {
       dateFrom,
       dateTo
     )
+    let calendar = getCalendarData(stream)
     this.state = {
       dateFrom: dateFrom,
       dateTo: dateTo,
       stream: stream,
+      calendar: calendar,
     }
     this.setDateRange = this.setDateRange.bind(this)
   }
 
   setDateRange(from, to) {
+    let stream = getActivityStreamData(
+      this.props.data.allStravaActivity.edges,
+      from,
+      to
+    )
+    let calendar = getCalendarData(stream)
     this.setState({
       dateFrom: from,
       dateTo: to,
-      stream: getActivityStreamData(
-        this.props.data.allStravaActivity.edges,
-        from,
-        to
-      ),
+      stream: stream,
+      calendar: calendar,
     })
   }
 
@@ -54,6 +60,11 @@ class IndexPage extends React.Component {
           dateFrom={this.state.dateFrom}
           dateTo={this.state.dateTo}
           setDateRange={this.setDateRange}
+        />
+        <Calendar
+          dateFrom={this.state.dateFrom}
+          dateTo={this.state.dateTo}
+          data={this.state.calendar}
         />
         <Polarity polarity={polarity} />
         <Graph stream={this.state.stream} />

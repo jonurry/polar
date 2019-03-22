@@ -2,7 +2,16 @@ import React from "react"
 import { ResponsiveCalendar } from "@nivo/calendar"
 
 export default ({ dateFrom, dateTo, data }) => (
-  <div style={{ height: `250px` }}>
+  <div
+    style={{
+      height: `${(dateTo.substring(0, 4) - dateFrom.substring(0, 4) + 1) * 15 +
+        10}vw`,
+      width: "100%",
+      minHeight: `${(dateTo.substring(0, 4) - dateFrom.substring(0, 4) + 1) *
+        80 +
+        75}px`,
+    }}
+  >
     <ResponsiveCalendar
       data={data}
       from={dateFrom}

@@ -36,7 +36,7 @@ export default ({ stream, children }) => (
       }}
       enableGridX={false}
       enableStackTooltip={false}
-      curve="catmullRom"
+      curve="basis"
       offsetType="silhouette"
       fillOpacity={0.85}
       borderColor="#000"

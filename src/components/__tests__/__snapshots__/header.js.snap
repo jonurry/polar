@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly 1`] = `
+<header
+  style={
+    Object {
+      "marginBottom": "1.45rem",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "margin": "0 auto",
+        "padding": "1.45rem 1.0875rem",
+      }
+    }
+  >
+    <h1
+      style={
+        Object {
+          "margin": 0,
+        }
+      }
+    >
+      <a
+        href="/"
+        style={
+          Object {
+            "color": "#FC4C02",
+            "textDecoration": "none",
+          }
+        }
+      >
+        <img
+          alt="Polar Logo"
+          src="test-file-stub"
+          style={
+            Object {
+              "float": "left",
+              "height": "2.25rem",
+            }
+          }
+        />
+        efault Starter
+      </a>
+    </h1>
+  </div>
+</header>
+`;

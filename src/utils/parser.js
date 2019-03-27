@@ -137,6 +137,7 @@ const sortZonesInBucket = bucket => {
 }
 
 export const getActivityStreamData = (data, dateFrom, dateTo) => {
+  console.log(data[data.length - 1])
   let stream = calculatePolarityScores(
     getTimeSpentInEachZone(
       getActivitiesWithHeartrateData(

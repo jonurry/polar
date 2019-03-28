@@ -5,7 +5,7 @@ let data = {
       average_watts: 117.5,
       distance: 31411.8,
       name: "Afternoon Ride",
-      start_date: "2019-03-22T13:54:55Z",
+      start_date: "2019-03-22",
       suffer_score: 38,
       zones: [
         {

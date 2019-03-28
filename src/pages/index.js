@@ -84,7 +84,7 @@ export const query = graphql`
         node {
           activity {
             name
-            start_date
+            start_date(formatString: "YYYY-MM-DD")
             distance
             average_heartrate
             average_watts

@@ -80,8 +80,8 @@ const filterActivitiesByDates = (data, dateFrom, dateTo) => {
   return data.filter(edge => {
     // filter between specified dates
     return (
-      edge.node.activity.start_date.substring(0, 10) >= dateFrom &&
-      edge.node.activity.start_date.substring(0, 10) <= dateTo
+      edge.node.activity.start_date >= dateFrom &&
+      edge.node.activity.start_date <= dateTo
     )
   })
 }
@@ -137,7 +137,6 @@ const sortZonesInBucket = bucket => {
 }
 
 export const getActivityStreamData = (data, dateFrom, dateTo) => {
-  console.log(data[data.length - 1])
   let stream = calculatePolarityScores(
     getTimeSpentInEachZone(
       getActivitiesWithHeartrateData(
@@ -152,7 +151,7 @@ export const getActivityStreamData = (data, dateFrom, dateTo) => {
 export const getCalendarData = data => {
   return data.map(zones => {
     return {
-      day: zones.activity_date.substring(0, 10),
+      day: zones.activity_date,
       value: Math.round(zones.polarity),
     }
   })

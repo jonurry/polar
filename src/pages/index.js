@@ -13,7 +13,7 @@ class IndexPage extends React.Component {
   constructor(props) {
     super(props)
     let dateFrom = moment()
-      .subtract(28, "days")
+      .subtract(6, "weeks") // default to show last 6 weeks of data
       .format("YYYY-MM-DD")
     let dateTo = moment().format("YYYY-MM-DD")
     let stream = getActivityStreamData(

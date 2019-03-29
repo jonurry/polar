@@ -42,6 +42,7 @@ class DateRange extends React.Component {
           focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
           onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
           isOutsideRange={day => moment().diff(day) < 0}
+          displayFormat="DD MMM YYYY"
         />
         {children}
       </div>
